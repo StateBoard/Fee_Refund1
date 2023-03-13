@@ -1,0 +1,168 @@
+﻿@model Fee_Refund_2021.Models.Tbl_CollegePaymentDetails
+@{
+    Layout = "~/Views/Shared/Student_Layout.cshtml";
+
+}
+@using (Html.BeginForm(Html.BeginForm("Dashboard", "College", FormMethod.Post, new { enctype = "multipart/form-data" })))
+{
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Dashboard</title>
+    </head>
+    <body>
+        <div>
+            <div class="row" style="text-align:center">
+                <label>
+                    <span style="color:black;">School Index Number : @Session["Index_No"]</span><br />
+                </label>
+                <br />
+                <label>
+                    <span style="color:red;">खालील तपशील English मध्ये भरण्यात यावा</span><br />
+                </label>
+
+                @if (ViewBag.ErrorMessage != null)
+                {
+
+                    <br />
+                    <label>
+                        <span style="color:red">@ViewBag.ErrorMessage</span>
+                    </label>
+                }
+            </div>
+            <br />
+            <div class="container">
+                <br />
+                <h5>College Details</h5>
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PrincipalName, "Principal Name :", htmlAttributes: new { @class = "control-label " })
+                            <span class="required" style="color:red;font-weight:bold">*</span>
+                            @Html.EditorFor(model => model.PrincipalName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.PrincipalName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PrincipalMobile, "Principal Mobile :", htmlAttributes: new { @class = "control-label " })
+                            <span class="required" style="color:red;font-weight:bold">*</span>
+                            @Html.EditorFor(model => model.PrincipalMobile, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.PrincipalMobile, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PrincipalEmail, "Principal Email :", htmlAttributes: new { @class = "control-label " })
+                            <span class="required" style="color:red;font-weight:bold">*</span>
+                            @Html.EditorFor(model => model.PrincipalEmail, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.PrincipalEmail, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <h5>College Bank Details</h5>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @*शाळेच्या पगार खात्याचा तपशील, मुख्याध्यापक या पदनामाचे असलेले खाते(पगार खात्याचे नाव)*@
+                            @Html.LabelFor(model => model.AccountHolderDetails, "शाळेच्या पगार खात्या व्यतिरिक्त मुख्याध्यापकाच्या पदनामाने असलेल्या इतर खात्याचे नाव \n Account Name as per passbook:", htmlAttributes: new { @class = "control-label " })
+                            <span class="required" style="color:red;font-weight:bold">*</span>
+                            @Html.EditorFor(model => model.AccountHolderDetails, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.AccountHolderDetails, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-3">
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.AccountNumber, "Account Number :", htmlAttributes: new { @class = "control-label ", @maxlength = "11" })
+                            <span class="required" style="color:red;font-weight:bold">*</span>
+                            @Html.EditorFor(model => model.AccountNumber, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.AccountNumber, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                    <div class="form-group col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.IFSCCode, "IFSC Code :", htmlAttributes: new { @class = "control-label " })
+                            <span class="required" style="color:red;font-weight:bold">*</span>
+                            @Html.EditorFor(model => model.IFSCCode, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.IFSCCode, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.BankName, "Bank Name :", htmlAttributes: new { @class = "control-label " })
+                            <span class="required" style="color:red;font-weight:bold">*</span>
+                            @Html.EditorFor(model => model.BankName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.BankName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PrincipalSignature, "Principal Signature", htmlAttributes: new { @class = "control-label " })<br />
+                            <span class="required" style="color:red;font-weight:bold">Please Upload Image in JPG, JPEG, PNG Format Only</span>
+                            <input type="file" id="imgfile" name="imgfile">
+                            @Html.ValidationMessageFor(model => model.PrincipalSignature, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                @if (Model != null && Model.PrincipalSignature != null)
+                {
+                    <div class="display-field">
+                        <img src="@Url.Content(@Model.PrincipalSignature)" alt="Sign" style="height:90px; width:300px;">
+
+                    </div>
+                }
+                <br /><br /> <br />
+                <label>
+                    <input type="checkbox" id="check" />
+                    <label for="check"></label>
+                    उपरोक्त प्रमाणपत्रामध्ये नमूद असलेल्या बाबींशी मी सहमत असून मी प्रमाणित करत आहे.
+
+                </label><br /><br />
+                <div class="form-field">
+                    <label for=""></label>
+                    <br />
+                    @if (ViewData["Active"] == null || ViewData["Active"].ToString() == "0")
+                    {
+                        <div class="form-group">
+                            <div class="col-md-offset-5 col-md-2">
+                                <input type="submit" value="submit" id="btnsubmit" class="btn btn-primary" onclick="return confirm('Do you want to save & Proceed. you will not able to update college details after submiting part 1')" disabled />
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+}
+<script>
+
+
+    $('#check').click(function () {
+        if ($(this).is(':checked')) {
+            $('#btnsubmit').removeAttr('disabled');
+        } else {
+            $('#btnsubmit').attr('disabled', 'disabled');
+        }
+    });
+
+
+    $('#btnsubmit').click(function () {
+        var fileVal = document.getElementById("imgfile");
+        if (fileVal.value == '') {
+            alert("Please Upload Principal Signature Image");
+            return false;
+        }
+    });
+
+</script>

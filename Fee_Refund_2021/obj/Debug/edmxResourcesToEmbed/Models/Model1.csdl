@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HSC_REFUND_2021Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Tbl_CollegePaymentDetails">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AccountHolderDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="AccountNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IFSCCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="BankName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PrincipalName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PrincipalMobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PrincipalEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Index_No" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PrincipalSignature" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Int32" />
+    <Property Name="Date_time" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Tbl_Login">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="login_id" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="active" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Tbl_Student">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="schol_no" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="seat_no" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="mname" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Fee_Paid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Date_Time" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Tbl_Code_Master">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="division_code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="division_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="district_code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="district_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="taluka_code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="taluka_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Tbl_CollegePaymentDetails_Bk">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AccountHolderDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="AccountNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IFSCCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="BankName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PrincipalName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PrincipalMobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PrincipalEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Index_No" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PrincipalSignature" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Int32" />
+    <Property Name="Date_time" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="HSC_REFUND_2021Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Tbl_CollegePaymentDetails" EntityType="Self.Tbl_CollegePaymentDetails" />
+    <EntitySet Name="Tbl_Login" EntityType="Self.Tbl_Login" />
+    <EntitySet Name="Tbl_Student" EntityType="Self.Tbl_Student" />
+    <EntitySet Name="Tbl_Code_Master" EntityType="Self.Tbl_Code_Master" />
+    <EntitySet Name="Tbl_CollegePaymentDetails_Bk" EntityType="Self.Tbl_CollegePaymentDetails_Bk" />
+    <EntitySet Name="Tbl_Bank" EntityType="HSC_REFUND_2021Model.Tbl_Bank" />
+  </EntityContainer>
+  <EntityType Name="Tbl_Bank">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="clientCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="van" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="txnAmount" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="payMode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="utrn" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="remitterName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="remitterAccNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Ifsc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="txnDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Fee_Refund_2021.Models.Tbl_BankResponse>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+      
+        <hr />
+        <table border="1" width="600">
+            <tr>
+                <th>ICICI Bank Field Name</th>
+                <th>Client Tag Name</th>
+                <th>Maximum Size</th>
+                <th>Remark</th>
+            </tr>
+            @foreach (var student in Model)
+            {
+                <tr>
+                    <td>@student.ICICI_Bank_Field_Name</td>
+                    <td>@student.Client_Tag_Name</td>
+                    <td>@student.Maximum_Size</td>
+                    <td>@student.Remark</td>
+                </tr>
+            }
+        </table>
+      
+
+
+    </div>
+</body>
+</html>

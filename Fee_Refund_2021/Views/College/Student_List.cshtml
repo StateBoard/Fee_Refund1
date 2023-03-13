@@ -1,0 +1,324 @@
+﻿@model IEnumerable<Fee_Refund_2021.Models.Tbl_Student>
+@{
+    Layout = "~/Views/Shared/Student_Layout.cshtml";
+}
+<style>
+    .mobilediv {
+        justify-content: center;
+    }
+
+    @@media only screen and (max-width: 600px) {
+        .mobilediv {
+            justify-content: normal;
+        }
+    }
+
+    .modal-dialog {
+        width: 80%;
+        height: 100%;
+        margin: 10px 10% 10% 10%;
+        padding: 0;
+    }
+
+    .modal-content {
+        height: auto;
+        min-height: 100%;
+        border-radius: 0;
+    }
+
+    .modal-backdrop.in {
+        opacity: 0;
+    }
+
+    .modal-backdrop {
+        position: unset;
+    }
+
+    #submit {
+        display: block;
+        margin: 20px 0;
+    }
+</style>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12" style="text-align:center">
+            <h2 align="center" style="color:black;"><b>Student Registered For SSC/HSC Examination 2021</b></h2>
+            <br />
+            <span style="color:black;">Index Number : @Session["Index_No"]</span><br />
+            <input type="hidden" name="IndexNo" id="IndexNo" value=@Session["Index_No"] />
+            <div style="overflow-x: auto;display: flex;" class="mobilediv">
+
+                <table class="borderTable" id="tbl_record">
+                    <thead>
+                        <tr>
+                            <th>
+                                Sr No
+                            </th>
+                            <th>
+                                Seat No
+                            </th>
+                            <th>
+                                Name
+                            </th>
+
+                            <th>
+                                Eligible / Not Eligible
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{int i = 1;}
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <span>@i</span>
+                                    @{i++;}
+                                    @Html.Hidden("hd_id", item.id)
+                                </td>
+                                <td>@item.seat_no </td>
+                                <td>@item.name <br /></td>
+                                <td>
+                                    <input type="radio" class="radio_chk" id=@item.id name=@item.id value="checked" @item.Status>
+                                    Eligible
+
+                                    @if (item.Status == "unchecked")
+                                    {
+                                        <input type="radio" class="radio_chk" id=@item.id name=@item.id value="unchecked" checked>
+                                    }
+                                    else
+                                    {
+                                        <input type="radio" class="radio_chk" id=@item.id name=@item.id value="unchecked">
+                                    }
+
+                                    Not Eligible
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <br />
+            </div>
+            <br />
+            <button type="button" class="btn btn-primary " id="btn_final_submit" value="Submit" onclick="return confirm('Do you want to save ? You will not be able to Change Student Eligibility!!')" target="_blank" />Verify & Submit
+        </div>
+    </div>
+</div>
+
+     @*Modal*@ 
+@*<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <div class="container">
+                    <h5>Eligible Student List</h5>
+                 
+                    <div align="center">
+                        <div class=" col-md-12" style=" overflow-y: scroll; height:200px;">
+                            <table class="borderTable" id="Incharge_Report"></table>
+                        </div>
+                    </div>
+                    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                    <h5>Student Count</h5>
+                    <div style="text-align:center">
+                        <div align="center">
+                            <table class="borderTable" id="cnt_record">
+                                <thead>
+
+                                    <tr>
+                                        <th>
+                                            Total Students
+                                        </th>
+                                        <th>
+                                            Eligible Students
+                                        </th>
+                                        <th>
+                                            Not Eligible Students
+                                        </th>
+
+                                        <th>
+                                            Total Refund Amount
+                                        </th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="text-align:center"><label><span id="span_stud_count"></span></label></td>
+
+
+                                        <td style="text-align:center"> <label><span id="span_eligible_count"></span></label></td>
+
+
+                                        <td style="text-align:center"> <label><span id="span_noteligible_count"></span></label></td>
+
+
+                                        <td style="text-align:center"> <label><span id="span_Ref_Amount"></span></label></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                <br />
+                <br />
+                <br />
+
+
+                   <div class="form-field">
+                                <label for=""></label>
+                                <br />
+                                <button type="button" class="btn btn-primary addRecords" id="submit" value="Submit" />Submit</button>
+
+                            </div>
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>*@
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#btn_final_submit").click(function () {
+             $.ajax({
+                type: 'POST',
+                url: '@Url.Action("Student_Remaining")',
+                dataType: 'json',
+                data: {
+
+                },
+                beforeSend: function () {
+                    $(".rounded").css("filter", "brightness(75%)");
+                    Showloader();
+                },
+                complete: function () {
+                    Hideloader();
+                    $(".rounded").css("filter", "brightness(100%)");
+                },
+                success: function (Data) {
+                    if (Data.Result) {
+                       
+                        window.open(Data.RedirectURL, '_blank');
+                    }
+                    else {
+                        Error_Alert(Data.Message);
+                    }
+                },
+                error: function (ex) {
+
+                }
+            });
+        });
+
+
+    });
+
+
+    $('#tbl_record').on('change', 'input', function () {
+        var row = $(this).closest('tr');
+        var radio_val = row.find("input[id=hd_id]").val()
+
+        $.ajax({
+                type: 'POST',
+                url: '@Url.Action("Get_Student")',
+                dataType: 'json',
+                data: {
+                    Index_id: row.find("input[id=hd_id]").val(),
+                    Checked: row.find("input[id=" + radio_val + "]:checked").val()
+                },
+                beforeSend: function () {
+                    $(".rounded").css("filter", "brightness(75%)");
+                    Showloader();
+                },
+                complete: function () {
+                    Hideloader();
+                    $(".rounded").css("filter", "brightness(100%)");
+                },
+                success: function (Data) {
+                    if (Data.Result) {
+                        if (Data.Message == 0) {
+
+                        }
+                    }
+                    else {
+                        Error_Alert(Data.Message);
+                    }
+                },
+                error: function (ex) {
+
+                }
+            });
+    });
+
+     @*$(document).ready(function () {
+
+        $("#btn_final_submit").click(function () {
+             $.ajax({
+                type: 'POST',
+                url: '@Url.Action("Qualified_Students")',
+                dataType: 'json',
+                data: {
+
+                },
+                beforeSend: function () {
+                    $(".rounded").css("filter", "brightness(75%)");
+                    Showloader();
+                },
+                complete: function () {
+                    Hideloader();
+                    $(".rounded").css("filter", "brightness(100%)");
+                },
+                success: function (Data) {
+                    if (Data.Result) {
+
+                        $("#Incharge_Report").empty();
+                        $("#span_stud_count").empty();
+                        $("#span_stud_count").html(Data.Total_stud);
+                        $("#span_eligible_count").html(Data.Eligible_stud);
+                        $("#span_noteligible_count").html(Data.Not_Eligible);
+                        $("#span_Ref_Amount").html(Data.Refund_Amount);
+                        Bind_Table(Data.data, $("#Incharge_Report").attr("id"));
+                    }
+                    else {
+                        Error_Alert(Data.Message);
+                    }
+                },
+                error: function (ex) {
+
+                }
+            });
+        });
+
+
+     });*@
+
+
+
+
+
+</script>
+
+
+
+
+
+

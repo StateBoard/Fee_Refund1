@@ -1,0 +1,45 @@
+﻿@using CaptchaMvc.HtmlHelpers
+@using CaptchaMvc;
+
+@{
+    ViewBag.Title = "Login";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="wrapper row3 allPadding">
+        <div class="rounded">
+            <br />
+            <h1 align="center" style="color:black; font-size: x-large;"> Login</h1>
+            <div style="padding-left:40%;">
+
+                <p class="Error">  @ViewBag.Error </p>
+                <p class="Error">  @ViewBag.ErrMessage </p>
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                        <label style="color:black">LOGIN ID :</label>
+                        <input type="text" class="form-control" name="login_id" required />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                        <label style="color:black">PASSWORD :</label>
+                        <input type="password" class="form-control" name="password" required />
+                    </div>
+                </div>
+                @Html.MathCaptcha()
+
+                <br />
+
+                <div class="row" style="padding-left:10%;">
+                    <input type="submit" value="Login" id="btnClg" class="btn btn-success" />
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+}

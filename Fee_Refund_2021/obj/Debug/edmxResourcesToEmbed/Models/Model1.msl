@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HSC_REFUND_2021ModelStoreContainer" CdmEntityContainer="HSC_REFUND_2021Entities">
+    <EntitySetMapping Name="Tbl_CollegePaymentDetails">
+      <EntityTypeMapping TypeName="HSC_REFUND_2021Model.Tbl_CollegePaymentDetails">
+        <MappingFragment StoreEntitySet="Tbl_CollegePaymentDetails">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="AccountHolderDetails" ColumnName="AccountHolderDetails" />
+          <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+          <ScalarProperty Name="IFSCCode" ColumnName="IFSCCode" />
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+          <ScalarProperty Name="PrincipalName" ColumnName="PrincipalName" />
+          <ScalarProperty Name="PrincipalMobile" ColumnName="PrincipalMobile" />
+          <ScalarProperty Name="PrincipalEmail" ColumnName="PrincipalEmail" />
+          <ScalarProperty Name="Index_No" ColumnName="Index_No" />
+          <ScalarProperty Name="PrincipalSignature" ColumnName="PrincipalSignature" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Date_time" ColumnName="Date_time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_Login">
+      <EntityTypeMapping TypeName="HSC_REFUND_2021Model.Tbl_Login">
+        <MappingFragment StoreEntitySet="Tbl_Login">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="login_id" ColumnName="login_id" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="active" ColumnName="active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_Student">
+      <EntityTypeMapping TypeName="HSC_REFUND_2021Model.Tbl_Student">
+        <MappingFragment StoreEntitySet="Tbl_Student">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="schol_no" ColumnName="schol_no" />
+          <ScalarProperty Name="seat_no" ColumnName="seat_no" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="mname" ColumnName="mname" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Fee_Paid" ColumnName="Fee_Paid" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Date_Time" ColumnName="Date_Time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_Code_Master">
+      <EntityTypeMapping TypeName="HSC_REFUND_2021Model.Tbl_Code_Master">
+        <MappingFragment StoreEntitySet="Tbl_Code_Master">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="division_code" ColumnName="division_code" />
+          <ScalarProperty Name="division_name" ColumnName="division_name" />
+          <ScalarProperty Name="district_code" ColumnName="district_code" />
+          <ScalarProperty Name="district_name" ColumnName="district_name" />
+          <ScalarProperty Name="taluka_code" ColumnName="taluka_code" />
+          <ScalarProperty Name="taluka_name" ColumnName="taluka_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_CollegePaymentDetails_Bk">
+      <EntityTypeMapping TypeName="HSC_REFUND_2021Model.Tbl_CollegePaymentDetails_Bk">
+        <MappingFragment StoreEntitySet="Tbl_CollegePaymentDetails_Bk">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="AccountHolderDetails" ColumnName="AccountHolderDetails" />
+          <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+          <ScalarProperty Name="IFSCCode" ColumnName="IFSCCode" />
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+          <ScalarProperty Name="PrincipalName" ColumnName="PrincipalName" />
+          <ScalarProperty Name="PrincipalMobile" ColumnName="PrincipalMobile" />
+          <ScalarProperty Name="PrincipalEmail" ColumnName="PrincipalEmail" />
+          <ScalarProperty Name="Index_No" ColumnName="Index_No" />
+          <ScalarProperty Name="PrincipalSignature" ColumnName="PrincipalSignature" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Date_time" ColumnName="Date_time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_Bank">
+      <EntityTypeMapping TypeName="HSC_REFUND_2021Model.Tbl_Bank">
+        <MappingFragment StoreEntitySet="Tbl_Bank">
+          <ScalarProperty Name="txnDate" ColumnName="txnDate" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="Ifsc" ColumnName="Ifsc" />
+          <ScalarProperty Name="remitterAccNo" ColumnName="remitterAccNo" />
+          <ScalarProperty Name="remitterName" ColumnName="remitterName" />
+          <ScalarProperty Name="utrn" ColumnName="utrn" />
+          <ScalarProperty Name="payMode" ColumnName="payMode" />
+          <ScalarProperty Name="txnAmount" ColumnName="txnAmount" />
+          <ScalarProperty Name="van" ColumnName="van" />
+          <ScalarProperty Name="clientCode" ColumnName="clientCode" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

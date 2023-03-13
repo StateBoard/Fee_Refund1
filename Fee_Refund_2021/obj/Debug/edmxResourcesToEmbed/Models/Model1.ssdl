@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HSC_REFUND_2021Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Tbl_Bank">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="clientCode" Type="nvarchar(max)" />
+    <Property Name="van" Type="nvarchar(max)" />
+    <Property Name="txnAmount" Type="nvarchar(max)" />
+    <Property Name="payMode" Type="nvarchar(max)" />
+    <Property Name="utrn" Type="nvarchar(max)" />
+    <Property Name="remitterName" Type="nvarchar(max)" />
+    <Property Name="remitterAccNo" Type="nvarchar(max)" />
+    <Property Name="Ifsc" Type="nvarchar(max)" />
+    <Property Name="remarks" Type="nvarchar(max)" />
+    <Property Name="txnDate" Type="nvarchar(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'HSC_REFUND_2021.dbo.Tbl_Code_Master' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Tbl_Code_Master">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="division_code" Type="nvarchar(max)" />
+    <Property Name="division_name" Type="nvarchar(max)" />
+    <Property Name="district_code" Type="nvarchar(max)" />
+    <Property Name="district_name" Type="nvarchar(max)" />
+    <Property Name="taluka_code" Type="nvarchar(max)" />
+    <Property Name="taluka_name" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Tbl_CollegePaymentDetails">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountHolderDetails" Type="nvarchar(max)" />
+    <Property Name="AccountNumber" Type="nvarchar(max)" />
+    <Property Name="IFSCCode" Type="nvarchar(max)" />
+    <Property Name="BankName" Type="nvarchar(max)" />
+    <Property Name="PrincipalName" Type="nvarchar(max)" />
+    <Property Name="PrincipalMobile" Type="nvarchar" MaxLength="50" />
+    <Property Name="PrincipalEmail" Type="nvarchar" MaxLength="50" />
+    <Property Name="Index_No" Type="nvarchar" MaxLength="50" />
+    <Property Name="PrincipalSignature" Type="nvarchar(max)" />
+    <Property Name="Active" Type="int" />
+    <Property Name="Date_time" Type="nvarchar(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'HSC_REFUND_2021.dbo.Tbl_CollegePaymentDetails_Bk' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Tbl_CollegePaymentDetails_Bk">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountHolderDetails" Type="nvarchar(max)" />
+    <Property Name="AccountNumber" Type="nvarchar(max)" />
+    <Property Name="IFSCCode" Type="nvarchar(max)" />
+    <Property Name="BankName" Type="nvarchar(max)" />
+    <Property Name="PrincipalName" Type="nvarchar(max)" />
+    <Property Name="PrincipalMobile" Type="nvarchar" MaxLength="50" />
+    <Property Name="PrincipalEmail" Type="nvarchar" MaxLength="50" />
+    <Property Name="Index_No" Type="nvarchar" MaxLength="50" />
+    <Property Name="PrincipalSignature" Type="nvarchar(max)" />
+    <Property Name="Active" Type="int" />
+    <Property Name="Date_time" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Tbl_Login">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="login_id" Type="nvarchar" MaxLength="255" />
+    <Property Name="password" Type="nvarchar" MaxLength="255" />
+    <Property Name="active" Type="int" />
+  </EntityType>
+  <EntityType Name="Tbl_Student">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="schol_no" Type="nvarchar" MaxLength="250" />
+    <Property Name="seat_no" Type="nvarchar" MaxLength="250" />
+    <Property Name="name" Type="nvarchar" MaxLength="250" />
+    <Property Name="mname" Type="nvarchar" MaxLength="250" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="Fee_Paid" Type="nvarchar" MaxLength="50" />
+    <Property Name="Date" Type="nchar" MaxLength="10" />
+    <Property Name="Date_Time" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityContainer Name="HSC_REFUND_2021ModelStoreContainer">
+    <EntitySet Name="Tbl_Bank" EntityType="Self.Tbl_Bank" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_CollegePaymentDetails" EntityType="Self.Tbl_CollegePaymentDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_Login" EntityType="Self.Tbl_Login" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_Student" EntityType="Self.Tbl_Student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_Code_Master" EntityType="Self.Tbl_Code_Master" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Tbl_Code_Master].[id] AS [id], 
+    [Tbl_Code_Master].[division_code] AS [division_code], 
+    [Tbl_Code_Master].[division_name] AS [division_name], 
+    [Tbl_Code_Master].[district_code] AS [district_code], 
+    [Tbl_Code_Master].[district_name] AS [district_name], 
+    [Tbl_Code_Master].[taluka_code] AS [taluka_code], 
+    [Tbl_Code_Master].[taluka_name] AS [taluka_name]
+    FROM [dbo].[Tbl_Code_Master] AS [Tbl_Code_Master]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Tbl_CollegePaymentDetails_Bk" EntityType="Self.Tbl_CollegePaymentDetails_Bk" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Tbl_CollegePaymentDetails_Bk].[id] AS [id], 
+    [Tbl_CollegePaymentDetails_Bk].[AccountHolderDetails] AS [AccountHolderDetails], 
+    [Tbl_CollegePaymentDetails_Bk].[AccountNumber] AS [AccountNumber], 
+    [Tbl_CollegePaymentDetails_Bk].[IFSCCode] AS [IFSCCode], 
+    [Tbl_CollegePaymentDetails_Bk].[BankName] AS [BankName], 
+    [Tbl_CollegePaymentDetails_Bk].[PrincipalName] AS [PrincipalName], 
+    [Tbl_CollegePaymentDetails_Bk].[PrincipalMobile] AS [PrincipalMobile], 
+    [Tbl_CollegePaymentDetails_Bk].[PrincipalEmail] AS [PrincipalEmail], 
+    [Tbl_CollegePaymentDetails_Bk].[Index_No] AS [Index_No], 
+    [Tbl_CollegePaymentDetails_Bk].[PrincipalSignature] AS [PrincipalSignature], 
+    [Tbl_CollegePaymentDetails_Bk].[Active] AS [Active], 
+    [Tbl_CollegePaymentDetails_Bk].[Date_time] AS [Date_time]
+    FROM [dbo].[Tbl_CollegePaymentDetails_Bk] AS [Tbl_CollegePaymentDetails_Bk]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

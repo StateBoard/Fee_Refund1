@@ -1,0 +1,326 @@
+﻿@model IEnumerable<Fee_Refund_2021.Models.Tbl_Student>
+
+@{
+    Layout = "~/Views/Shared/Student_Layout.cshtml";
+}
+
+
+<style>
+    .mobilediv {
+        justify-content: center;
+    }
+
+    @@media only screen and (max-width: 600px) {
+        .mobilediv {
+            justify-content: normal;
+        }
+    }
+
+    .modal-dialog {
+        width: 80%;
+        height: 100%;
+        margin: 10px 10% 10% 10%;
+        padding: 0;
+    }
+
+    .modal-content {
+        height: auto;
+        min-height: 100%;
+        border-radius: 0;
+    }
+
+    .modal-backdrop.in {
+        opacity: 0;
+    }
+
+    .modal-backdrop {
+        position: unset;
+    }
+</style>
+<html>
+
+<body>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12" style="text-align:center">
+                <h2 align="center" style="color:black;"><b>Student Refund Status For SSC/HSC Examination 2021</b></h2>
+                <br />
+                <span style="color:black;">Index Number : @Session["Index_No"]</span><br />
+                <input type="hidden" name="IndexNo" id="IndexNo" value=@Session["Index_No"] />
+                <div style="overflow-x: auto;display: flex;" class="mobilediv">
+
+                    <table class="borderTable" id="tbl_record">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Sr. No.
+                                </th>
+                                <th>
+                                    Seat No.
+                                </th>
+                                <th>
+                                    Name
+                                </th>
+                                <th>Eligibility</th>
+                                <th>
+                                    Refund Status
+                                </th>
+                                <th>
+                                    Date of Refund to Student
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{int i = 1;}
+                            @foreach (var item in Model)
+                             {
+                                <tr>
+                                    <td>
+                                        <span>@i</span>
+                                        @{i++;}
+                                        @Html.Hidden("hd_id", item.id)
+                                    </td>
+                                    <td>@item.seat_no </td>
+                                    <td>@item.name <br /></td>
+                                    <td>Eligible</td>
+                                    <td>
+                                        <input type="radio" class="radio_chk" id=@item.id name=@item.id value="Paid" @item.Fee_Paid >
+                                        Paid
+
+                                        @if (item.Fee_Paid == "UnPaid")
+                                         {
+                                            <input type="radio" class="radio_chk" id=@item.id name=@item.id value="UnPaid" >
+                                         }
+                                        else
+                                        {
+                                            <input type="radio" class="radio_chk" id=@item.id name=@item.id value="UnPaid">
+                                        }
+
+                                        UnPaid
+                                    </td>
+                                    <td>
+                                        <input type="datetime" class="datepick" readonly="readonly" />
+                                    </td>
+                                </tr>
+                             }
+                        </tbody>
+                    </table>
+                    <br />
+                </div>
+                <br />
+                <button type="button" class="btn btn-primary" id="btn_final_submit"  onclick="return confirm('Do you want to save & Generate Challan?')">
+                    Submit
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+<link rel="Stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" />
+
+@*-----Modal-----*@
+<!--<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <div class="container">
+
+                    <h5>Student Count</h5>
+                    <div style="text-align:center">
+                        <div align="center">
+                            <table class="borderTable" id="cnt_record">
+                                <thead>
+
+                                    <tr>
+                                        <th>
+                                            Total Students
+                                        </th>
+                                        <th>
+                                            Students Paid
+                                        </th>
+                                        <th>
+                                            Students UnPaid
+                                        </th>
+
+                                        <th>
+                                            Total Refund Amount
+                                        </th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="text-align:center"><label><span id="span_stud_count"></span></label></td>
+
+
+                                        <td style="text-align:center"> <label><span id="span_eligible_count"></span></label></td>
+
+
+                                        <td style="text-align:center"> <label><span id="span_noteligible_count"></span></label></td>
+
+
+                                        <td style="text-align:center"> <label><span id="span_Ref_Amount"></span></label></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                <br />
+                <br />
+                <br />
+
+
+                   <div class="form-field">
+                                <label for=""></label>
+                                <br />
+                                <button type="button" class="btn btn-primary addRecords" id="submit" value="Submit" />Generate Chalan
+
+                            </div>
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>-->
+
+<script>
+
+    $(function () {
+        $("#tbl_record tbody input[type=datetime]").datepicker({ dateFormat: 'dd-mm-yy' });
+    });
+
+
+    $('#tbl_record').on('change', 'input', function () {
+
+            var row = $(this).closest('tr');
+            var radio_val = row.find("input[id=hd_id]").val();
+            var radio_check_cal = row.find("input[id=" + radio_val + "]:checked").val();
+
+            if (radio_check_cal == "UnPaid") {
+                row.find(".datepick").hide();
+               
+            }
+
+            if (radio_check_cal == "Paid") {
+                row.find(".datepick").show();
+          
+            }
+
+
+        $.ajax({
+                type: 'POST',
+                url: '@Url.Action("Fee_Paid")',
+                dataType: 'json',
+                data: {
+                    Index_id: row.find("input[id=hd_id]").val(),
+                    Checked: row.find("input[id=" + radio_val + "]:checked").val(),
+                    Date: row.find(".datepick").val(),
+                },
+                beforeSend: function () {
+                    $(".rounded").css("filter", "brightness(75%)");
+                    Showloader();
+                },
+                complete: function () {
+                    Hideloader();
+                    $(".rounded").css("filter", "brightness(100%)");
+                },
+                success: function (Data) {
+                    if (Data.Result) {
+                        if (Data.Message == 0) {
+
+                        }
+                    }
+                    else {
+                        Error_Alert(Data.Message);
+                    }
+                },
+                error: function (ex) {
+
+                }
+            });
+         });
+
+       $("#btn_final_submit").click(function () {
+             $.ajax({
+                type: 'POST',
+                url: '@Url.Action("Student_Remaining2")',
+                dataType: 'json',
+                data: {
+
+                },
+                beforeSend: function () {
+                    $(".rounded").css("filter", "brightness(75%)");
+                    Showloader();
+                },
+                complete: function () {
+                    Hideloader();
+                    $(".rounded").css("filter", "brightness(100%)");
+                },
+                success: function (Data) {
+                    if (Data.Result) {
+                        window.open("../College/Receipt", '_blank')
+                    }
+                    else {
+                        Error_Alert(Data.Message);
+                    }
+                },
+                error: function (ex) {
+
+                }
+            });
+        });
+
+
+
+    @*$(document).ready(function () {
+
+    $.ajax({
+        type: 'POST',
+        url: '@Url.Action("Receipt_Tbl")',
+        dataType: 'json',
+        data: {
+
+        },
+        beforeSend: function () {
+            $(".rounded").css("filter", "brightness(75%)");
+            Showloader();
+        },
+        complete: function () {
+            Hideloader();
+            $(".rounded").css("filter", "brightness(100%)");
+        },
+        success: function (Data) {
+            if (Data.Result) {
+
+                $("#span_stud_count3").html("<b> &nbsp;&nbsp; " + Data.total_std + " &nbsp;&nbsp; </b> ");
+                $("#span_eligible_count").html("<b> &nbsp;&nbsp;" + Data.qulified_std + " &nbsp;&nbsp; </b> ");
+                $("#span_noteligible_count").html("<b> &nbsp;&nbsp;" + Data.unqualified_std + " &nbsp;&nbsp; </b> ");
+                $("#span_Refund_Amount").html("<b> &nbsp;&nbsp;" + Data.Refund_Amount + " &nbsp;&nbsp; </b> ");
+
+
+
+            }
+            else {
+            Error_Alert(Data.Message);
+            }
+        },
+        error: function (ex) {
+
+        }
+    });
+});*@
+
+</script>
